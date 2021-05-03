@@ -15,6 +15,7 @@ export default function App() {
   useEffect(() => {
     let interval = setInterval(() => {
       moveSnake();
+      document.onkeydown = determineDirection;
     }, 300);
 
     return () => clearInterval(interval);
@@ -36,7 +37,15 @@ export default function App() {
     let newSnake = snake.map((x) => x);
     let head = newSnake[newSnake.length - 1];
 
-    head = [head[0], head[1] + 2];
+    if (direction == "UP") {
+      head = [head[0], head[1] - 2];
+    } else if (direction == "DOWN") {
+      head = [head[0], head[1] + 2];
+    } else if (direction == "LEFT") {
+      head = [head[0] - 2, head[1]];
+    } else if (direction == "RIGHT") {
+      head = [head[0] + 2, head[1]];
+    }
 
     newSnake.push(head);
     newSnake.shift();
