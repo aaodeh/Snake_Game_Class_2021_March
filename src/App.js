@@ -10,6 +10,8 @@ export default function App() {
     [8, 0]
   ]);
 
+  const [direction, setDirection] = useState("DOWN");
+
   useEffect(() => {
     let interval = setInterval(() => {
       moveSnake();
