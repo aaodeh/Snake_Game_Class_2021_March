@@ -20,6 +20,18 @@ export default function App() {
     return () => clearInterval(interval);
   });
 
+  const determineDirection = (e) => {
+    if (e.keyCode == 38) {
+      setDirection("UP");
+    } else if (e.keyCode == 40) {
+      setDirection("DOWN");
+    } else if (e.keyCode == 37) {
+      setDirection("LEFT");
+    } else if (e.keyCode == 39) {
+      setDirection("RIGHT");
+    }
+  };
+
   const moveSnake = () => {
     let newSnake = snake.map((x) => x);
     let head = newSnake[newSnake.length - 1];
