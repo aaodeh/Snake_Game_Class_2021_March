@@ -10,7 +10,13 @@ export default function App() {
     [8, 0]
   ]);
 
+  const randomFood = () => {
+    return [25, 25];
+  };
+
   const [direction, setDirection] = useState("DOWN");
+
+  const [food, setFood] = useState(randomFood());
 
   useEffect(() => {
     let interval = setInterval(() => {
