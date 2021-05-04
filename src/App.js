@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 
 export default function App() {
   const [direction, setDirection] = useState("DOWN");
-
+  const [speed, setSpeed] = useState(300);
   const [snake, setSnake] = useState([
     [0, 0],
     [2, 0],
@@ -27,7 +27,7 @@ export default function App() {
     let interval = setInterval(() => {
       moveSnake();
       document.onkeydown = determineDirection;
-    }, 300);
+    }, speed);
 
     return () => clearInterval(interval);
   });
@@ -48,10 +48,12 @@ export default function App() {
     let newSnake = snake.map((x) => x);
     let head = newSnake[newSnake.length - 1];
 
-    if (head[0] == food[0] && head[1] == food[1]) {
+    if (head[0] === food[0] && head[1] === food[1]) {
       newSnake.push([]);
 
       setFood(randomFood());
+
+      setSpeed((prev) => (prev > 10 ? prev - 10 : 10));
     }
 
     if (direction == "UP") {
@@ -86,6 +88,7 @@ export default function App() {
         ></div>
       </div>
       <h2>Snake Size: {snake.length}</h2>
+      <h2>Snake Speed: {(300 - speed) / 10 + 1}</h2>
     </div>
   );
 }
