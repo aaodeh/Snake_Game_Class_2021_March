@@ -63,6 +63,7 @@ export default function App() {
           ></div>
         ))}
       </div>
+      <h2>Snake Size: {snake.length}</h2>
     </div>
   );
 }
