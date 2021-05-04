@@ -2,6 +2,8 @@ import "./styles.css";
 import { useState, useEffect } from "react";
 
 export default function App() {
+  const [direction, setDirection] = useState("DOWN");
+
   const [snake, setSnake] = useState([
     [0, 0],
     [2, 0],
@@ -11,10 +13,13 @@ export default function App() {
   ]);
 
   const randomFood = () => {
-    return [25, 25];
-  };
+    let locaton = [
+      Math.floor(Math.random() * 49) * 2,
+      Math.floor(Math.random() * 49) * 2
+    ];
 
-  const [direction, setDirection] = useState("DOWN");
+    return locaton;
+  };
 
   const [food, setFood] = useState(randomFood());
 
@@ -68,6 +73,11 @@ export default function App() {
             style={{ top: `${s[1]}%`, left: `${s[0]}%` }}
           ></div>
         ))}
+
+        <div
+          className="food-cell"
+          style={{ top: `${food[1]}%`, left: `${food[0]}%` }}
+        ></div>
       </div>
       <h2>Snake Size: {snake.length}</h2>
     </div>
