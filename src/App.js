@@ -48,6 +48,12 @@ export default function App() {
     let newSnake = snake.map((x) => x);
     let head = newSnake[newSnake.length - 1];
 
+    if (head[0] == food[0] && head[1] == food[1]) {
+      newSnake.push([]);
+
+      setFood(randomFood());
+    }
+
     if (direction == "UP") {
       head = [head[0], head[1] - 2];
     } else if (direction == "DOWN") {
